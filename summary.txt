@@ -1,0 +1,6 @@
+BUDGET SUMMARY
+-----------------
+Income: 3000.0
+Total expenses: 730.0
+Difference (income - expenses): 2270.0
+Status: You are under budget.

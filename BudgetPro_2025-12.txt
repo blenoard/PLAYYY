@@ -1,0 +1,14 @@
+BUDGET SUMMARY
+-----------------
+Income: 1000.0
+
+Expenses by category:
+- rent: 300.0
+- food: 200.0
+- subscriptions: 20.0
+- transport: 10.0
+- other expenses: 0.0
+
+Total expenses: 530.0
+Difference (income - expenses): 470.0
+Status: You are under budget.
