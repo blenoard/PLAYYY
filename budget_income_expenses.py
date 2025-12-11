@@ -32,12 +32,19 @@ def get_valid_period():
 def enter_income():
     """Ask the user for the monthly income with input validation."""
     while True:
+        user_input = input("Please enter your income: ")
         try:
-            income = float(input("Please enter your income: "))
-            print("Your income is", income)
-            return income
+            income = float(user_input)
+
+            if income < 0:
+                print("Income cannot be negative. Please try again.")
+            else:
+                print("Your income is", income)
+                return income
+
         except ValueError:
             print("This is not a number. Please try again.")
+
 
 
 def init_expenses_for_all_categories(categories, expenses_per_category):
@@ -146,15 +153,38 @@ def load_or_init_budget(period):
     data_filename = "BudgetPro_" + period + ".dat"
     text_filename = "BudgetPro_" + period + ".txt"
 
+    # Try to load existing data for this period
     loaded_data = load_data_from_pickle(data_filename)
 
     if loaded_data is not None:
-        income = loaded_data["income"]
-        categories = loaded_data["categories"]
-        expenses_per_category = loaded_data["expenses_per_category"]
-        print("\nContinuing with existing budget data for", period)
+        print("\nExisting budget data found for", period + ".")
+        # Ask the user if they want to reuse the existing data
+        while True:
+            answer = input("Do you want to use the existing data? (Y/N): ").strip().lower()
+
+            if answer == "y":
+                print("Loading existing data...\n")
+                income = loaded_data["income"]
+                categories = loaded_data["categories"]
+                expenses_per_category = loaded_data["expenses_per_category"]
+                break
+
+            elif answer == "n":
+                print("Starting a NEW monthly budget for", period + ". Previous data will be overwritten.\n")
+                income = enter_income()
+
+                categories = ["rent", "food", "subscriptions",
+                              "transport", "other expenses"]
+                expenses_per_category = {cat: 0.0 for cat in categories}
+
+                init_expenses_for_all_categories(categories, expenses_per_category)
+                break
+
+            else:
+                print("Please enter Y or N.")
     else:
-        print("\nStarting a new monthly budget for", period)
+        # No existing data: start a fresh budget
+        print("\nNo existing data found. Starting a new monthly budget for", period)
         income = enter_income()
 
         categories = ["rent", "food", "subscriptions",
