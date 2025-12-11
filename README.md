@@ -2,7 +2,7 @@
 
 This project was developed as part of the Programming Foundations module to illustrate how real-world budgeting tasks can be implemented using Python.
 
-## Analysis
+# Analysis
 
 ## Problem
 
