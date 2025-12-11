@@ -1,8 +1,8 @@
-# BudgetPro – Monthly Budget Planner (Console)
+# 👨🏻‍💻 BudgetPro – Monthly Budget Planner (Console)
 
 This project was developed as part of the Programming Foundations module to illustrate how real-world budgeting tasks can be implemented using Python.
 
-# Analysis
+# 📑 Analysis
 
 ## Problem
 
@@ -38,7 +38,7 @@ If the user later runs the program again for the same month, BudgetPro loads exi
 
 ---
 
-# Project Requirements
+# 🔧 Project Requirements
 
 This application meets all three requirements:
 
@@ -89,7 +89,7 @@ human-readable export for records, containing:
 
 ---
 
-# Implementation
+# 💼 Implementation
 
 ## Technology
 
