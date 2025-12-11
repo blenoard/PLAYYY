@@ -1,19 +1,8 @@
-# 🍏 BudgetPro – Monthly Budget Planner (Console)
+# BudgetPro – Monthly Budget Planner (Console)
 
-🚧 This is a template-style project documentation for the course Programming Foundations at FHNW, BSc BIT.  
-🚧 Do not keep this section in your final submission.
+This project was developed as part of the Programming Foundations module to illustrate how real-world budgeting tasks can be implemented using Python.
 
-This project is intended to:
-
-- Practice the complete process from problem analysis to implementation  
-- Apply Python programming concepts learned in the Programming Foundations module  
-- Demonstrate the use of console interaction, data validation, and file processing  
-- Produce clean, well-structured, and modular code  
-- Prepare students for teamwork and documentation in later modules  
-
----
-
-# 📝 Analysis
+## Analysis
 
 ## Problem
 
@@ -49,7 +38,7 @@ If the user later runs the program again for the same month, BudgetPro loads exi
 
 ---
 
-# ✅ Project Requirements
+# Project Requirements
 
 This application meets all three requirements:
 
@@ -82,7 +71,7 @@ Examples:
 
 The program uses two file types:
 
-### ✔ Monthly Data File (`.dat`) – Pickle  
+### Monthly Data File (`.dat`) – Pickle  
 Stores:
 - income  
 - categories  
@@ -90,8 +79,8 @@ Stores:
 
 Loaded automatically when the same month is selected again.
 
-### ✔ Summary File (`.txt`)  
-Human-readable export for records, containing:
+### Summary File (`.txt`)  
+human-readable export for records, containing:
 - income  
 - expenses per category  
 - total expenses  
@@ -100,7 +89,7 @@ Human-readable export for records, containing:
 
 ---
 
-# ⚙️ Implementation
+# Implementation
 
 ## Technology
 
@@ -111,29 +100,33 @@ Human-readable export for records, containing:
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
+```
 BudgetPro/
-├── main.py # entry point of the program
-├── greet_user.py # user greeting
-├── categories.py # category management functions
-├── budget_income_expenses.py # income, expenses, validation, summary, persistence
-├── menu.py # menu loop and navigation
-├── BudgetPro_2025-12.txt # example summary file
-├── BudgetPro_2025-12.dat # example data file
-└── README.md # documentation
-
+├── main.py                       # entry point of the program
+├── greet_user.py                 # user greeting
+├── categories.py                 # category management
+├── budget_income_expenses.py     # income, expenses, validation, summary, persistence
+├── menu.py                       # menu loop and navigation
+└── README.md                     # documentation
+```
 
 ---
 
-## ▶️ How to Run
+## How to Run
 
 
-Runs the full console application.
+Open GitHub Codespaces or a local Python environment
+
+Run the program with:
+```
+python3 main.py
+```
 
 ---
 
-## 📚 Libraries Used
+## Libraries Used
 
 ### `pickle`
 Used for saving and loading monthly data in structured Python dictionaries.  
@@ -141,29 +134,19 @@ Part of the Python standard library.
 
 ---
 
-# 👥 Team & Contributions
+# Team & Contributions
 
 All team members contributed jointly to all parts of the project:
 
-| Team Member | Contribution |
-|------------|--------------|
-| Team Member A | General development (income, expenses, categories, menu) |
-| Team Member B | General development (validation, persistence, summary export) |
-| Team Member C | General development (modularization, testing, documentation) |
-
-*(Replace A, B, C with actual group member names.)*
+| Team Member   | Contribution |
+|---------------|--------------|
+| Blenoard      | General development (income, expenses, categories, summary export) |
+| Ilir          | General development (validation, persistence, menu)                |
+| Korab         | General development (modularization, testing, documentation)       |
 
 ---
 
-# 🤝 Contributing
-
-Use this repository as a starting point by importing it into your own GitHub account.  
-Commit regularly to track progress.  
-
----
-
-# 📝 License
+# License
 
 This project is provided for educational use only as part of the Programming Foundations module.  
 MIT License.
-
