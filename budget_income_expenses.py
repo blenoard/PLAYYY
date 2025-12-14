@@ -7,9 +7,10 @@ def get_valid_period():
     Repeat until the format and month are valid.
     """
     while True:
-        period = input("Enter year and month for this budget (YYYY-MM): ").strip()
+        prompt = "Enter year and month for this budget (YYYY-MM): "
+        period = input(prompt).strip()
 
-        # basic structure check
+        # Basic structure check
         if len(period) != 7 or period[4] != "-":
             print("Invalid format. Please use YYYY-MM (for example 2025-12).")
             continue
@@ -46,7 +47,6 @@ def enter_income():
             print("This is not a number. Please try again.")
 
 
-
 def init_expenses_for_all_categories(categories, expenses_per_category):
     """
     Go through all categories once and ask for an initial expense.
@@ -57,8 +57,11 @@ def init_expenses_for_all_categories(categories, expenses_per_category):
 
     for category in categories:
         while True:
-            user_input = input("Enter your expense for " + category +
-                               " (or press Enter to skip): ").strip()
+            prompt = (
+                "Enter your expense for " + category +
+                " (or press Enter to skip): "
+            )
+            user_input = input(prompt).strip()
 
             if user_input == "":
                 print("No expense entered for", category)
@@ -91,7 +94,10 @@ def save_summary_to_file(income, expenses_per_category, filename):
     Create a text file with a budget summary.
     This function does not print the summary to the console.
     """
-    total_expenses, difference = compute_budget(income, expenses_per_category)
+    total_expenses, difference = compute_budget(
+        income,
+        expenses_per_category
+    )
 
     file = open(filename, "w")
 
@@ -99,6 +105,7 @@ def save_summary_to_file(income, expenses_per_category, filename):
     file.write("-----------------\n")
     file.write("Income: " + str(income) + "\n")
     file.write("\nExpenses by category:\n")
+
     for cat, amount in expenses_per_category.items():
         file.write("- " + cat + ": " + str(amount) + "\n")
 
@@ -116,16 +123,18 @@ def save_summary_to_file(income, expenses_per_category, filename):
     print("Summary exported to", filename)
 
 
-def save_data_to_pickle(income, categories, expenses_per_category, data_filename):
+def save_to_pickle(income, categories, expenses_per_category, data_filename):
     """Save the current data to a pickle file for this period."""
     data = {
         "income": income,
         "categories": categories,
-        "expenses_per_category": expenses_per_category
+        "expenses_per_category": expenses_per_category,
     }
+
     file = open(data_filename, "wb")
     pickle.dump(data, file)
     file.close()
+
     print("Data saved to", data_filename)
 
 
@@ -138,8 +147,10 @@ def load_data_from_pickle(data_filename):
         file = open(data_filename, "rb")
         data = pickle.load(file)
         file.close()
+
         print("Existing data loaded from", data_filename)
         return data
+
     except FileNotFoundError:
         return None
 
@@ -153,44 +164,75 @@ def load_or_init_budget(period):
     data_filename = "BudgetPro_" + period + ".dat"
     text_filename = "BudgetPro_" + period + ".txt"
 
-    # Try to load existing data for this period
     loaded_data = load_data_from_pickle(data_filename)
 
     if loaded_data is not None:
         print("\nExisting budget data found for", period + ".")
-        # Ask the user if they want to reuse the existing data
+
         while True:
-            answer = input("Do you want to use the existing data? (Y/N): ").strip().lower()
+            prompt = "Do you want to use the existing data? (Y/N): "
+            answer = input(prompt).strip().lower()
 
             if answer == "y":
                 print("Loading existing data...\n")
                 income = loaded_data["income"]
                 categories = loaded_data["categories"]
-                expenses_per_category = loaded_data["expenses_per_category"]
+                expenses_per_category = loaded_data[
+                    "expenses_per_category"
+                ]
                 break
 
             elif answer == "n":
-                print("Starting a NEW monthly budget for", period + ". Previous data will be overwritten.\n")
+                print("Starting a NEW monthly budget for", period + ".")
+                print("Previous data will be overwritten.\n")
+
                 income = enter_income()
 
-                categories = ["rent", "food", "subscriptions",
-                              "transport", "other expenses"]
-                expenses_per_category = {cat: 0.0 for cat in categories}
+                categories = [
+                    "rent",
+                    "food",
+                    "subscriptions",
+                    "transport",
+                    "other expenses",
+                ]
+                expenses_per_category = {
+                    cat: 0.0 for cat in categories
+                }
 
-                init_expenses_for_all_categories(categories, expenses_per_category)
+                init_expenses_for_all_categories(
+                    categories,
+                    expenses_per_category
+                )
                 break
 
             else:
                 print("Please enter Y or N.")
     else:
-        # No existing data: start a fresh budget
-        print("\nNo existing data found. Starting a new monthly budget for", period)
+        print("\nNo existing data found.")
+        print("Starting a new monthly budget for", period)
+
         income = enter_income()
 
-        categories = ["rent", "food", "subscriptions",
-                      "transport", "other expenses"]
-        expenses_per_category = {cat: 0.0 for cat in categories}
+        categories = [
+            "rent",
+            "food",
+            "subscriptions",
+            "transport",
+            "other expenses",
+        ]
+        expenses_per_category = {
+            cat: 0.0 for cat in categories
+        }
 
-        init_expenses_for_all_categories(categories, expenses_per_category)
+        init_expenses_for_all_categories(
+            categories,
+            expenses_per_category
+        )
 
-    return income, categories, expenses_per_category, data_filename, text_filename
+    return (
+        income,
+        categories,
+        expenses_per_category,
+        data_filename,
+        text_filename,
+    )

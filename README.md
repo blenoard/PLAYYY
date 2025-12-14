@@ -140,9 +140,9 @@ All team members contributed jointly to all parts of the project:
 
 | Team Member   | Contribution |
 |---------------|--------------|
-| Blenoard      | General development (income, expenses, categories, summary export) |
-| Ilir          | General development (validation, persistence, menu)                |
-| Korab         | General development (modularization, testing, documentation)       |
+| Blenoard      | General development (validation, persistence, summary export) |
+| Ilir          | General development (income, expenses, categories, menu)      |
+| Korab         | General development (modularization, testing, documentation)  |
 
 ---
 

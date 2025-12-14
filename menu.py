@@ -1,5 +1,5 @@
 from categories import add_expense_to_category, add_new_category, delete_or_clear_category
-from budget_income_expenses import compute_budget, save_summary_to_file, save_data_to_pickle
+from budget_income_expenses import compute_budget, save_summary_to_file, save_to_pickle
 
 
 def print_menu():
@@ -40,7 +40,7 @@ def run_menu_loop(income, categories, expenses_per_category,
         elif choice == "5":
             # Exit program: save data and say goodbye
             total_expenses, difference = compute_budget(income, expenses_per_category)
-            save_data_to_pickle(income, categories, expenses_per_category, data_filename)
+            save_to_pickle(income, categories, expenses_per_category, data_filename)
             print("\nYour final total expenses are:", total_expenses)
             print("Difference (income - expenses):", difference)
             print("Goodbye and thank you for using BudgetPro!")

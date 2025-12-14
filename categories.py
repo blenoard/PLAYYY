@@ -17,7 +17,8 @@ def choose_category(categories):
     show_categories(categories)
     print("0. Return to main menu")
 
-    selected = input("Choose a category number (or 0 to return): ")
+    prompt = "Choose a category number (or 0 to return): "
+    selected = input(prompt)
 
     if selected == "0":
         return None
@@ -26,12 +27,12 @@ def choose_category(categories):
         idx = int(selected) - 1
         if 0 <= idx < len(categories):
             return idx
-        else:
-            print("Invalid category number.")
-            return None
-    else:
-        print("Please enter a number.")
+
+        print("Invalid category number.")
         return None
+
+    print("Please enter a number.")
+    return None
 
 
 def add_expense_to_category(categories, expenses_per_category):
@@ -43,7 +44,9 @@ def add_expense_to_category(categories, expenses_per_category):
     chosen_category = categories[idx]
 
     while True:
-        amount_input = input("Enter your expense for " + chosen_category + ": ")
+        prompt = "Enter your expense for " + chosen_category + ": "
+        amount_input = input(prompt)
+
         try:
             amount = float(amount_input)
             if amount <= 0:
@@ -59,7 +62,8 @@ def add_expense_to_category(categories, expenses_per_category):
 def add_new_category(categories, expenses_per_category):
     """Add a completely new category (with optional first expense)."""
     print("\n2) New category")
-    new_cat = input("Enter new category name OR '0' to return: ").strip()
+    prompt = "Enter new category name OR '0' to return: "
+    new_cat = input(prompt).strip()
 
     if new_cat == "0":
         return
@@ -74,11 +78,16 @@ def add_new_category(categories, expenses_per_category):
         print("New category added:", new_cat)
 
         while True:
-            amount_input = input("Enter your first expense for " + new_cat +
-                                 " (or press Enter to skip): ").strip()
+            prompt = (
+                "Enter your first expense for " + new_cat +
+                " (or press Enter to skip): "
+            )
+            amount_input = input(prompt).strip()
+
             if amount_input == "":
                 print("No expense entered for", new_cat)
                 break
+
             try:
                 amount = float(amount_input)
                 if amount < 0:
